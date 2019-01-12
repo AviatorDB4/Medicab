@@ -8,6 +8,7 @@ import './App.css';
 import About from './pages/About'
 import Search from './pages/Search'
 import Discover from './pages/Discover'
+import NavBar from './components/Navbar';
 //import axios from 'axios';
 
 //OpenFDA API Key: Ed1TwZFrGiXnLXJafQsJqH8OomhgyrKSnAS8n0lN
@@ -38,6 +39,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
+        <NavBar />
           <Route exact path="/" component={About} />
           <Route exact path="/prescriptions" component={Prescriptions} />
           <Route exact path="/prescription-form" component={Prescriptions} />
