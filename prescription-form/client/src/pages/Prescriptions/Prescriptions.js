@@ -10,9 +10,10 @@ import { Input, TextArea, FormBtn } from "../../components/Form";
 class Prescriptions extends Component {
 
   state = {
-    prescriptions: [],
+    prescriptions: "",
     drug_medication: "",
     generic: false,
+    strength: "",
     amount: "",
     route: "",
     frequency: "",
@@ -28,21 +29,21 @@ class Prescriptions extends Component {
 
   loadPrescriptions = () => {
     API.getPrescs()
-    .then(res => this.setState({ 
-      prescriptions: res.data, 
-      drug_medication: "",
-      generic: false,
-      strength: "",
-      amount: "",
-      route: "",
-      frequency: "",
-      why: "",
-      how_much: "",
-      refills: 0,
-      notes: ""
-    }))
-    .catch(err => console.log("Error" + err))
-  } 
+      .then(res => this.setState({
+        prescriptions: res.data,
+        drug_medication: "",
+        generic: false,
+        strength: "",
+        amount: "",
+        route: "",
+        frequency: "",
+        why: "",
+        how_much: "",
+        refills: 0,
+        notes: ""
+      }))
+      .catch(err => console.log("Error" + err))
+  }
 
   deletePresc = id => {
     API.deletePresc(id)
@@ -62,17 +63,17 @@ class Prescriptions extends Component {
     console.log(this.state)
     event.preventDefault();
     if (this.state.title && this.state.author) {
-      API.savePresc({ 
-      drug_medication: this.state.drug_medication,
-      generic: this.state.generic,
-      strength: this.state.strength,
-      amount: this.state.amount,
-      route: this.state.route,
-      frequency: this.state.frequency,
-      why: this.state.why,
-      how_much: this.state.how_much,
-      refills: this.state.refills,
-      notes: this.state.notes
+      API.savePresc({
+        drug_medication: this.state.drug_medication,
+        generic: this.state.generic,
+        strength: this.state.strength,
+        amount: this.state.amount,
+        route: this.state.route,
+        frequency: this.state.frequency,
+        why: this.state.why,
+        how_much: this.state.how_much,
+        refills: this.state.refills,
+        notes: this.state.notes
       })
         .then(res => this.loadPrescriptions())
         .catch(err => console.log(err));
@@ -88,75 +89,78 @@ class Prescriptions extends Component {
               <h1>Enter Prescriptions</h1>
             </Jumbotron>
             <form>
-              <Input 
-              value={this.state.drug_medication}
-              onChange={this.handleInputChange}
-              name="drug_medication" 
-              placeholder="Medication Name (required)" 
-              />
-              <Input 
-              value={this.state.strength}
-              onChange={this.handleInputChange}
-              name="strength" 
-              placeholder="Strength of Medication" 
-              />
-              <Input 
-              value={this.state.amount}
-              onChange={this.handleInputChange}
-              name="amount" 
-              placeholder="Per Use Dose (required)" 
-              />
-              <Input 
-              value={this.state.route}
-              onChange={this.handleInputChange}
-              name="route" 
-              placeholder="Method of Ingestion (required)" 
-              />
-              <Input
-              value={this.state.frequency}
-              onChange={this.handleInputChange}
-              name="frequency" 
-              placeholder="Frequency of Use (required)" 
-              />
-              <Input 
-              value={this.state.why}
-              onChange={this.handleInputChange}
-              name="why" 
-              placeholder="When Should You Use (optional)" 
-              />
-              <Input 
-              value={this.state.how_much}
-              onChange={this.handleInputChange}
-              name="how_much" 
-              placeholder="How Many Pills per Prescription (required)" 
-              />
-              <Input 
-              value={this.state.refills}
-              onChange={this.handleInputChange}
-              name="refills" 
-              placeholder="How Many Refills on Your Prescription (required)"
-              />
-              <TextArea 
-              value={this.state.notes}
-              onChange={this.handleInputChange}
-              name="notes" 
-              placeholder="Notes (Optional)" 
-              />
+              <div>
+                <Input
+                  value={this.state.drug_medication}
+                  onChange={this.handleInputChange}
+                  name="drug_medication"
+                  placeholder="Medication Name (required)"
+                />
 
-              <FormBtn
-                disabled={!(this.state.drug_medication 
-                && this.state.amount 
-                && this.state.strength
-                && this.state.route 
-                && this.state.frequency 
-                && this.state.why 
-                && this.state.how_much 
-                && this.state.refills)}
-                onClick={this.handleFormSubmit}
-              >
-              Submit Prescription
+                <Input
+                  value={this.state.strength}
+                  onChange={this.handleInputChange}
+                  name="strength"
+                  placeholder="Strength of Medication"
+                />
+                <Input
+                  value={this.state.amount}
+                  onChange={this.handleInputChange}
+                  name="amount"
+                  placeholder="Per Use Dose (required)"
+                />
+                <Input
+                  value={this.state.route}
+                  onChange={this.handleInputChange}
+                  name="route"
+                  placeholder="Method of Ingestion (required)"
+                />
+                <Input
+                  value={this.state.frequency}
+                  onChange={this.handleInputChange}
+                  name="frequency"
+                  placeholder="Frequency of Use (required)"
+                />
+                <Input
+                  value={this.state.why}
+                  onChange={this.handleInputChange}
+                  name="why"
+                  placeholder="When Should You Use (optional)"
+                />
+                <Input
+                  value={this.state.how_much}
+                  onChange={this.handleInputChange}
+                  name="how_much"
+                  placeholder="How Many Pills per Prescription (required)"
+                />
+                <Input
+                  value={this.state.refills}
+                  onChange={this.handleInputChange}
+                  name="refills"
+                  placeholder="How Many Refills on Your Prescription (required)"
+                />
+                <TextArea
+                  value={this.state.notes}
+                  onChange={this.handleInputChange}
+                  name="notes"
+                  placeholder="Notes (Optional)"
+                />
+                <FormBtn
+                  disabled={!(this.state.drug_medication
+                    && this.state.amount
+                    && this.state.strength
+                    && this.state.route
+                    && this.state.frequency
+                    && this.state.why
+                    && this.state.how_much
+                    && this.state.refills)}
+                  onClick={this.handleFormSubmit}
+                >
+                  Submit Prescription
               </FormBtn>
+              </div>
             </form>
+
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
@@ -176,8 +180,8 @@ class Prescriptions extends Component {
                 ))}
               </List>
             ) : (
-              <h3>No Results to Display</h3>
-            )}
+                <h3>No Results to Display</h3>
+              )}
           </Col>
         </Row>
       </Container>
