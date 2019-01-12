@@ -2,11 +2,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
+
+const NavbarIcon = () => (
+  <div>
+ <img alt="Medicine cabinet" src="https://cdn0.iconfinder.com/data/icons/expenses-vs-income/30/__pills_medicine_drugs_health-512.png" height="30px" width="40px"></img> 
+      MedCabinet!
+</div>
+);
+
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 const Navbar = props => (
-  <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <nav className="navbar navbar-expand-lg navbar-light bg-light" >
     <Link className="navbar-brand" to="/">
-      MedCabinet!
+   <NavbarIcon/>
     </Link>
     <div>
       <ul className="navbar-nav">
@@ -48,6 +56,9 @@ const Navbar = props => (
         </li>
       </ul>
     </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
   </nav>
 );
 

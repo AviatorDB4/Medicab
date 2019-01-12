@@ -20,7 +20,7 @@ class Search extends Component {
       .catch(err => console.log(err));
   }
 
-  handleInputChange = event => {
+  handleInputChange = event => { 
     this.setState({ search: event.target.value });
   };
 
