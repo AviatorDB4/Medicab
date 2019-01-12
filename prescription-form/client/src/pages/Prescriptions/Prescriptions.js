@@ -62,7 +62,7 @@ class Prescriptions extends Component {
   handleFormSubmit = event => {
     console.log(this.state)
     event.preventDefault();
-    if (this.state.title && this.state.author) {
+    if (true) {
       API.savePresc({
         drug_medication: this.state.drug_medication,
         generic: this.state.generic,

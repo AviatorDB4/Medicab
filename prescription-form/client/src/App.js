@@ -1,16 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   BrowserRouter,
   Route,
 } from 'react-router-dom';
 import Prescriptions from './pages/Prescriptions';
 import './App.css';
+import About from './pages/About'
+import Search from './pages/Search'
+import Discover from './pages/Discover'
 //import axios from 'axios';
 
 //OpenFDA API Key: Ed1TwZFrGiXnLXJafQsJqH8OomhgyrKSnAS8n0lN
 
 class App extends Component {
-//My attempt at using the API. Does not work yet.
+  //My attempt at using the API. Does not work yet.
   // constructor() {
   //   super();
   //   this.state = {
@@ -35,8 +38,11 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <Route exact path="/" component={Prescriptions} />
+          <Route exact path="/" component={About} />
           <Route exact path="/prescriptions" component={Prescriptions} />
+          <Route exact path="/prescription-form" component={Prescriptions} />
+          <Route exact path="/search" component={Search} />
+          <Route exact path="/discover" component={Discover} />
         </div>
       </BrowserRouter>
     )
