@@ -1,0 +1,9 @@
+form.search {
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+form.search button[type="Search"] {
+  float: right;
+  margin-top: 10px;
+}
