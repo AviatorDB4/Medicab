@@ -24,9 +24,10 @@
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "mongoose": "^5.4.3",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "concurrently": "^4.1.0"
   },
   "devDependencies": {
-    "concurrently": "^4.1.0"
+    
   }
 }
