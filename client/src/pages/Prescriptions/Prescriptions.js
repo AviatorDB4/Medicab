@@ -170,12 +170,22 @@ class Prescriptions extends Component {
               <List>
                 {this.state.prescriptions.map(prescription => (
                   <ListItem key={prescription._id}>
+                    <DeleteBtn onClick={() => this.deletePresc(prescription._id)} />
                     <Link to={"/prescriptions/" + prescription._id}>
                       <strong>
+                        <h1>
                         {prescription.drug_medication}
+                        </h1>
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deletePresc(prescription._id)} />
+                    <p><u>Strength:</u> {prescription.strength}</p>
+                       <p><u>Amount:</u> {prescription.amount}</p>
+                       <p><u>Method of Ingestion:</u> {prescription.route}</p>
+                       <p><u>Frequency:</u> {prescription.frequency}</p>
+                       <p><u>Take When:</u> {prescription.why}</p>
+                       <p><u>Amount per Prescription:</u> {prescription.how_much}</p>
+                       <p><u>Amount of Refills:</u> {prescription.refills}</p>
+                    
                   </ListItem>
                 ))}
               </List>

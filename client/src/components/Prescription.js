@@ -1,39 +1,205 @@
-import React, { Component }from 'react';
-import API from '../utils/API';
-
-// const Prescription = (props) => (
+import React, { Component } from "react";
+import Jumbotron from "../../components/Jumbotron";
+import DeleteBtn from "../../components/DeleteBtn.js";
+import API from "../../utils/API";
+import { Link } from 'react-router-dom';
+import { Col, Row, Container } from "../../components/Grid";
+import { List, ListItem } from "../../components/List";
+import { Input, TextArea, FormBtn } from "../../components/Form";
+class Prescriptions extends Component {
+  state = {
+    prescriptions: "",
+    prescription: "",
+    drug_medication: "",
+    generic: false,
+    strength: "",
+    amount: "",
+    route: "",
+    frequency: "",
+    why: "",
+    how_much: "",
+    refills: 0,
+    show: false
+  };
+  debugger
+  componentDidMount() {
+    console.log(this.state);
+    this.loadPrescriptions();
+  }
+  changeRefillAmount = (id, delta) => {
+    API.getPresc(id)
+    .then(res => {
+      console.log(res.data)
+      API.changePresc(id, res.data.refills = res.data.refills += delta)
+      .then(this.loadPrescriptions()
+      
+      )
+    })
     
-//     <li className="prescription">
-//         <div>
-//             <h2>Medication: {props.drug_medication}</h2>
-//             <p>Strength: {props.strength}</p>
-//             <p>Amount: {props.amount}</p>
-//             <p>Method of Ingestion: {props.route}</p>
-//             <p>Frequency: {props.frequency}</p>
-//             <p>Take When: {props.why}</p>
-//             <p>Amount per Prescription: {props.how_much}</p>
-//             <p>Amount of Refills: {props.refills}</p>
-//         </div>
-//     </li>
-// )
-
-class Prescription extends Component {
-
-    state = {
-        prescriptions: []
-    };
-
-    componentDidMount() {
-        this.loadPrescriptions();
+  }
+  loadPrescriptions = () => {
+    API.getPrescs()
+      .then(res => this.setState({
+        prescriptions: res.data,
+        drug_medication: "",
+        generic: false,
+        strength: "",
+        amount: "",
+        route: "",
+        frequency: "",
+        why: "",
+        how_much: "",
+        refills: 0,
+        notes: ""
+      }))
+      .catch(err => console.log("Error" + err))
+      .then(console.log(this.state.prescriptions))
+  }
+  deletePresc = id => {
+    API.deletePresc(id)
+      .then(res => this.loadPrescriptions())
+      .catch(err => console.log(err));
+  };
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    console.log(name + ": " + this.state)
+    this.setState({
+      [name]: value
+    });
+  };
+  handleFormSubmit = event => {
+    console.log(this.state)
+    event.preventDefault();
+    if (true) {
+      API.savePresc({
+        drug_medication: this.state.drug_medication,
+        generic: this.state.generic,
+        strength: this.state.strength,
+        amount: this.state.amount,
+        route: this.state.route,
+        frequency: this.state.frequency,
+        why: this.state.why,
+        how_much: this.state.how_much,
+        refills: this.state.refills,
+        notes: this.state.notes
+      })
+        .then(res => this.loadPrescriptions())
+        .catch(err => console.log(err));
     }
-
-    loadPrescriptions = () => {
-        API.getPrescs()
-        .then(res => this.setState({ prescriptions: res.data}))
-        .catch(err => console.log(err))
-    }
-
-    
+  };
+  render() {
+    return (
+      <Container fluid>
+        <Row>
+          <Col size="md-6">
+            <Jumbotron>
+              <h1>Enter Prescriptions</h1>
+            </Jumbotron>
+            <form>
+              <div>
+                <Input
+                  value={this.state.drug_medication}
+                  onChange={this.handleInputChange}
+                  name="drug_medication"
+                  placeholder="Medication Name (required)"
+                />
+                <Input
+                  value={this.state.strength}
+                  onChange={this.handleInputChange}
+                  name="strength"
+                  placeholder="Strength of Medication"
+                />
+                <Input
+                  value={this.state.amount}
+                  onChange={this.handleInputChange}
+                  name="amount"
+                  placeholder="Per Use Dose (required)"
+                />
+                <Input
+                  value={this.state.route}
+                  onChange={this.handleInputChange}
+                  name="route"
+                  placeholder="Method of Ingestion (required)"
+                />
+                <Input
+                  value={this.state.frequency}
+                  onChange={this.handleInputChange}
+                  name="frequency"
+                  placeholder="Frequency of Use (required)"
+                />
+                <Input
+                  value={this.state.why}
+                  onChange={this.handleInputChange}
+                  name="why"
+                  placeholder="When Should You Use (optional)"
+                />
+                <Input
+                  value={this.state.how_much}
+                  onChange={this.handleInputChange}
+                  name="how_much"
+                  placeholder="How Many Pills per Prescription (required)"
+                />
+                <Input
+                  value={this.state.refills}
+                  onChange={this.handleInputChange}
+                  name="refills"
+                  placeholder="How Many Refills on Your Prescription (required)"
+                />
+                <TextArea
+                  value={this.state.notes}
+                  onChange={this.handleInputChange}
+                  name="notes"
+                  placeholder="Notes (Optional)"
+                />
+                <FormBtn
+                  disabled={!(this.state.drug_medication
+                    && this.state.amount
+                    && this.state.strength
+                    && this.state.route
+                    && this.state.frequency
+                    && this.state.why
+                    && this.state.how_much
+                    && this.state.refills)}
+                  onClick={this.handleFormSubmit}
+                >
+                  Submit Prescription
+              </FormBtn>
+              </div>
+            </form>
+          </Col>
+          <Col size="md-6 sm-12">
+            <Jumbotron>
+              <h1>My Prescriptions</h1>
+            </Jumbotron>
+            {this.state.prescriptions.length ? (
+              <List>
+                {this.state.prescriptions.map(prescription => (
+                  <ListItem key={prescription._id}>
+                  <DeleteBtn onClick={() => this.deletePresc(prescription._id)} />
+                    <Link to={"/search"}>
+                      <strong>
+                        <h1>{prescription.drug_medication}</h1>
+                      </strong>
+                    </Link>
+                    <p><u>Strength:</u> {prescription.strength}</p>
+                        <p><u>Amount:</u> {prescription.amount}</p>
+                        <p><u>Method of Ingestion:</u> {prescription.route}</p>
+                        <p><u>Frequency:</u> {prescription.frequency}</p>
+                        <p><u>Take When:</u> {prescription.why}</p>
+                        <p><u>Amount per Prescription:</u> {prescription.how_much}</p>
+                        <p><u>Amount of Refills:</u> {prescription.refills} 
+                          <button className="addRefill" onClick={() => this.changeRefillAmount(prescription._id, +1)}> Add Refill </button></p>
+                        
+                  </ListItem>
+                ))}
+              </List>
+            ) : (
+                <h3>No Results to Display</h3>
+              )}
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
 }
-
-export default Prescription;
+export default Prescriptions;

@@ -4,12 +4,17 @@ import {
   Route,
 } from 'react-router-dom';
 import Prescriptions from './pages/Prescriptions';
-import './App.css';
+import './App.css'
 import About from './pages/About'
 import Search from './pages/Search'
 import Discover from './pages/Discover'
 import ScriptPage from './pages/prescription-page'
 import NavBar from './components/Navbar';
+import RidePage from './pages/ride';
+import Login from './pages/User/Login';
+import SignUp from './pages/User/SignUp';
+import Logout from './pages/User/Logout';
+import Footer from './components/Footer';
 //import axios from 'axios';
 
 //OpenFDA API Key: Ed1TwZFrGiXnLXJafQsJqH8OomhgyrKSnAS8n0lN
@@ -47,6 +52,13 @@ class App extends Component {
           <Route exact path="/search" component={Search} />
           <Route exact path="/discover" component={Discover} />
           <Route exact path="/prescription-page" component={ScriptPage} />
+          <Route exact path="/ride" component={RidePage} />
+          <Route exact path="/Login" component={Login} />
+          <Route exact path="/SignUp" component={SignUp} />
+          <Route exact path="/Logout" component={Logout} />
+          <Footer/>
+
+          
         </div>
       </BrowserRouter>
     )

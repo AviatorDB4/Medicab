@@ -1,5 +1,7 @@
 
 var express = require('express');
+var session = require('express-session');
+var bcrypt = require('bcrypt');
 var path = require('path');
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
@@ -11,47 +13,7 @@ const PORT = process.env.PORT || 3001;
 // API Routes
 var app = express();
 
-// Download your OAuth2 configuration from the Google
-// const keys = require('./oauth2.keys.json')
 
-/**
- * Start by acquiring a pre-authenticated oAuth2 client.
-//  */
-// async function main() {
-//   const oAuth2Client = await getAuthenticatedClient();
-//   // Make a simple request to the Google Plus API using our pre-authenticated client. The `request()` method
-//   // takes an AxiosRequestConfig object.  Visit https://github.com/axios/axios#request-config.
-//   const url = 'https://www.googleapis.com/plus/v1/people?query=pizza';
-//   const res = await oAuth2Client.request({url});
-//   console.log(res.data);
-
-//   // After acquiring an access_token, you may want to check on the audience, expiration,
-//   // or original scopes requested.  You can do that with the `getTokenInfo` method.
-//   const tokenInfo = await oAuth2Client.getTokenInfo(
-//     oAuth2Client.credentials.access_token
-//   );
-//   console.log(tokenInfo);
-// }
-
-// /**
-//  * Create a new OAuth2Client, and go through the OAuth2 content
-//  * workflow.  Return the full client to the callback.
-//  */
-// function getAuthenticatedClient() {
-//   return new Promise((resolve, reject) => {
-//     // create an oAuth client to authorize the API call.  Secrets are kept in a `keys.json` file,
-//     // which should be downloaded from the Google Developers Console.
-//     const oAuth2Client = new OAuth2Client(
-//       keys.web.client_id,
-//       keys.web.client_secret,
-//       keys.web.redirect_uris[0]
-//     );
-
-
-
-// main().catch(console.error);
-// })
-// }
 
 // Define middleware here
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -65,7 +27,45 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(routes)
 app.use("/api", api);
 
-// catch 404 and forward to error handler
+//  if (req.body.email &&
+//   req.body.username &&
+//   req.body.password &&
+//    req.body.passwordConf) {
+//   var userData = {
+//     email: req.body.email,
+//     username: req.body.username,
+//      password: req.body.password,
+//      passwordConf: req.body.passwordConf,
+//    }
+//    //use schema.create to insert data into the db
+//    User.create(userData, function (err, user) {
+//      if (err) {
+//        return next(err)
+//      } else {
+//        return res.redirect('/profile');
+//      }
+//    });
+//  }
+//  //use sessions for tracking logins
+//  app.use(session({
+//    secret: 'work hard',
+//    resave: true,
+//    saveUninitialized: false
+//  }));
+//  // catch 404 and forward to error handler
+//  // GET /logout
+//  router.get('/logout', function(req, res, next) {
+//    if (req.session) {
+//      // delete session object
+//      req.session.destroy(function(err) {
+//        if(err) {
+//          return next(err);
+//        } else {
+//          return res.redirect('/');
+//        }
+//      });
+//    }
+//  });
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/medicab");

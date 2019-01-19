@@ -1,3 +1,12 @@
-ul.search-results img {
+div.results img {
   margin: 0 auto;
+ 
+  
+}
+div.item {
+  background: rgba(15, 15, 15, 0);
+ 
+}
+h3 {
+  text-decoration: underline;
 }

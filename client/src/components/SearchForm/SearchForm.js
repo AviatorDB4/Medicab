@@ -16,9 +16,7 @@ const SearchForm = props => (
         placeholder="Type Medication to begin"
         id="breed"
       />
-      <datalist id="breeds">
-        {props.breeds.map(breed => <option value={breed} key={breed} />)}
-      </datalist>
+     <br/>
       <button
         type="submit"
         onClick={props.handleFormSubmit}

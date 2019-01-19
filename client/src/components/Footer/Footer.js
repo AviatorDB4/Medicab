@@ -2,9 +2,9 @@ import React from "react";
 import "./Footer.css";
 
 const Footer = () => (
-  <footer className="footer">
-    <span>MedCabinet 2019</span>
-  </footer>
+ <footer className="footer">
+    <p id="copyright">&copy; Copyright 2019 MediCabinet</p>
+ </footer>
 );
 
 export default Footer;
