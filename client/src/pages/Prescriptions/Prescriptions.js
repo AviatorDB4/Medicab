@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
-
+import "./Prescriptions.css";
 class Prescriptions extends Component {
 
   state = {
@@ -173,19 +173,35 @@ class Prescriptions extends Component {
                     <DeleteBtn onClick={() => this.deletePresc(prescription._id)} />
                     <Link to={"/prescriptions/" + prescription._id}>
                       <strong>
-                        <h1>
+                        <h1 className="Prescription">
                         {prescription.drug_medication}
                         </h1>
                       </strong>
                     </Link>
-                    <p><u>Strength:</u> {prescription.strength}</p>
-                       <p><u>Amount:</u> {prescription.amount}</p>
-                       <p><u>Method of Ingestion:</u> {prescription.route}</p>
-                       <p><u>Frequency:</u> {prescription.frequency}</p>
-                       <p><u>Take When:</u> {prescription.why}</p>
-                       <p><u>Amount per Prescription:</u> {prescription.how_much}</p>
-                       <p><u>Amount of Refills:</u> {prescription.refills}</p>
-                    
+                    <p><u>Strength:</u></p>
+                   <p>{prescription.strength}</p>
+                   <hr />
+                      <p><u>Amount:</u></p>
+                      <p>{prescription.amount}</p>
+                      <hr />
+                      <p><u>Method of Ingestion:</u></p>
+                      <p>{prescription.route}</p>
+                      <hr />
+                      <p><u>Frequency:</u></p>
+                      <p>{prescription.frequency}</p>
+                      <hr />
+                      <p><u>Take When:</u></p>
+                      <p>{prescription.why}</p>
+                      <hr />
+                      <p><u>Amount per Prescription:</u></p>
+                      <p>{prescription.how_much}</p>
+                      <hr />
+                      <p><u>Amount of Refills:</u></p>
+                      <p>{prescription.refills}</p>
+                      <hr />
+                      <p><u>Notes:</u></p>
+                      <p>{prescription.notes}</p>
+                      <hr />
                   </ListItem>
                 ))}
               </List>

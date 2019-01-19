@@ -6,34 +6,50 @@ const ride = () => (
     <Container style={{ marginTop: 30 }}>
         <Row>
             <Col size="md-12">
-                <form>
+            <form>
                     <label>
                         First Name
                         <input type="text" name="name" />
                     </label>
                     <input type="submit" value="sumbit" />
-                </form>
-                <form>
+                <br/>
+            </form>
+            </Col>
+        </Row>
+        <Row>
+            <Col size="md-12">
+            <form>
                     <label>
                         Last Name
                         <input type="text" name="name" />
                     </label>
                     <input type="submit" value="sumbit" />
-                </form>
-                <form>
+                <br/>
+            </form>
+            </Col>
+        </Row>
+        <Row>
+            <Col size="md-12">
+            <form>
                     <label>
-                        Pick-up Address
+                        Starting Address  
                         <input type="text" name="name" />
                     </label>
                     <input type="submit" value="sumbit" />
-                </form>
-                <form>
+                <br/>
+            </form>
+            </Col>
+        </Row>
+        <Row>
+            <Col size="md-12">
+            <form>
                     <label>
                         Destination Address
                         <input type="text" name="name" />
                     </label>
                     <input type="submit" value="sumbit" />
-                </form>
+                <br/>
+            </form>
             </Col>
         </Row>
     </Container>

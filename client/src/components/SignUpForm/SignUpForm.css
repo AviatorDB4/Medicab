@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Thasadith');
+
+.form1 {
+    font-family: 'Thasadith', sans-serif;
+
+    margin-right: -75%;
+    margin-top: 4%;
+
+}
+.label{
+    color: #363636 !important;
+}
+.signup{
+    font-size: 20px;
+    padding-bottom: 4%;
+    padding-left: 13%;
+    animation: move1 10s steps(10) infinite alternate;
+
+}
+.col-sm-5 , .signup {
+    animation: move1 2s steps(500) infinite alternate;
+    color: #363636;
+}
+
+@keyframes move1 {
+    from {  right: 10px; }
+    to   {  right: 0; }
+  }

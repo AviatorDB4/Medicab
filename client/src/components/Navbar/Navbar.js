@@ -5,8 +5,8 @@ import "./Navbar.css";
 
 const NavbarIcon = () => (
   <div>
- <img alt="Medicine cabinet" src="https://cdn0.iconfinder.com/data/icons/expenses-vs-income/30/__pills_medicine_drugs_health-512.png" height="30px" width="40px"></img> 
-      MediCab!
+    <img alt="Medicine cabinet" src="https://cdn0.iconfinder.com/data/icons/expenses-vs-income/30/__pills_medicine_drugs_health-512.png" height="30px" width="40px"></img>
+    MediCab!
 </div>
 );
 
@@ -14,7 +14,7 @@ const NavbarIcon = () => (
 const Navbar = props => (
   <nav className="navbar navbar-expand-lg navbar-light bg-light" >
     <Link className="navbar-brand" to="/">
-   <NavbarIcon/>
+      <NavbarIcon />
     </Link>
     <div>
       <ul className="navbar-nav">
@@ -27,7 +27,7 @@ const Navbar = props => (
                 : "nav-link"
             }
           >
-           | Home |
+            | Home |
           </Link>
         </li>
         <li className="nav-item">
@@ -39,7 +39,7 @@ const Navbar = props => (
                 : "nav-link"
             }
           >
-           | Discover |
+            | Discover |
           </Link>
         </li>
         <li className="nav-item">
@@ -55,28 +55,40 @@ const Navbar = props => (
           </Link>
         </li>
         <li className="nav-item">
-        <Link
-          to="/ride"
-          className={
-            window.location.pathname === "/ride"
-              ? "nav-link active"
-              : "nav-link"
-          }
-        >
-        | Get A Ride |
+          <Link
+            to="/ride"
+            className={
+              window.location.pathname === "/ride"
+                ? "nav-link active"
+                : "nav-link"
+            }
+          >
+            | Get A Ride |
         </Link>
         </li>
         <li className="nav-item">
-        <Link
-          to="/prescription-form"
-          className={
-            window.location.pathname === "/prescriptions"
-              ? "nav-link active"
-              : "nav-link"
-          }
-        >
-        | Prescriptions |
+          <Link
+            to="/prescription-form"
+            className={
+              window.location.pathname === "/prescriptions"
+                ? "nav-link active"
+                : "nav-link"
+            }
+          >
+            | Prescriptions |
         </Link>
+        </li>
+        <li   className="nav-item">
+          <Link
+            to="/About"
+            className={
+              window.location.pathname === "/search"
+                ? "nav-link active"
+                : "nav-link"
+            }
+            id="login" >
+            Welcome: David B 
+          </Link>
         </li>
       </ul>
     </div>

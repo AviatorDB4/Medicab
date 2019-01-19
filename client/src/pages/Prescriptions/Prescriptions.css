@@ -1,0 +1,12 @@
+h1 {
+    color: white;
+    background-color: rgba(245, 245, 245, 0.199);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px;
+ }
+ 
+ .Prescription {
+    background-color: teal;
+    text-align: center;
+ }

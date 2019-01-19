@@ -11,9 +11,7 @@ import Discover from './pages/Discover'
 import ScriptPage from './pages/prescription-page'
 import NavBar from './components/Navbar';
 import RidePage from './pages/ride';
-import Login from './pages/User/Login';
-import SignUp from './pages/User/SignUp';
-import Logout from './pages/User/Logout';
+
 import Footer from './components/Footer';
 //import axios from 'axios';
 
@@ -53,9 +51,8 @@ class App extends Component {
           <Route exact path="/discover" component={Discover} />
           <Route exact path="/prescription-page" component={ScriptPage} />
           <Route exact path="/ride" component={RidePage} />
-          <Route exact path="/Login" component={Login} />
-          <Route exact path="/SignUp" component={SignUp} />
-          <Route exact path="/Logout" component={Logout} />
+          
+         
           <Footer/>
 
           
