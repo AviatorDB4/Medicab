@@ -68,7 +68,7 @@ app.use("/api", api);
 //  });
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/medicab");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://root:password1@ds111025.mlab.com:11025/heroku_w0bjcxrs");
 
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
