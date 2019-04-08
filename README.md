@@ -5,3 +5,5 @@ Medicab is a web app that lets you manage your prescription so that you know wha
 MediCab was created using React, Node, MongoDB and the FDA API.
 
 Created by Jorge Valencia, David Barton, Josh Landi and Marcus Finch.
+
+Like Link: https://frozen-wave-55823.herokuapp.com/
